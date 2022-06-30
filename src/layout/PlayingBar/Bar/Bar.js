@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import moment from 'moment';
+
+// eslint-disable-next-line no-unused-vars
 import momentDurationFormatSetup from 'moment-duration-format';
 
 import classNames from 'classnames/bind';

@@ -26,7 +26,7 @@ const cx = classNames.bind(styles);
 function Sidebar() {
     const dispatch = useDispatch();
     const newPlaylist = useSelector((state) => state.playlist);
-    const { playlists, currentPlaylist } = newPlaylist;
+    const { playlists } = newPlaylist;
     const handleAddNewPlaylist = () => {
         const newPlaylist = {
             name: `Danh sách phát của tôi #${playlists.length + 1}`,

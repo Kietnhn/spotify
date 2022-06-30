@@ -4,6 +4,7 @@ function useAudioPlayer() {
     const [duration, setDuration] = useState();
     const [curTime, setCurTime] = useState();
     const [clickedTime, setClickedTime] = useState();
+    // eslint-disable-next-line
     useEffect(() => {
         const audio = document.getElementById('audio');
         // state setters wrappers

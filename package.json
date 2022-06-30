@@ -1,5 +1,6 @@
 {
     "name": "spotify",
+    "homepage": "https://Kietnhn.github.io/spotify",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -23,6 +24,8 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
+        "predeploy": "npm run build",
+        "deloy": "gh-pages -d build",
         "start": "set PORT=3006 && react-scripts start",
         "build": "react-scripts build",
         "test": "react-scripts test",
