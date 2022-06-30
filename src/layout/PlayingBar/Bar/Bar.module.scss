@@ -1,0 +1,46 @@
+.bar {
+    user-select: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .bar__time {
+        color: #a7a7a7;
+        font-size: 1.1rem;
+    }
+
+    .bar__progress {
+        flex: 1;
+        margin: 0 20px;
+        border-radius: 2px;
+        height: 4px;
+        width: 100%;
+        background-color: hsla(0, 0%, 100%, 0.3);
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+        .bar__current__progress {
+            position: absolute;
+            height: 100%;
+            background-color: var(--white-color);
+        }
+        .bar__progress__knob {
+            position: relative;
+            height: 12px;
+            width: 12px;
+            background-color: #fff;
+            -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+            box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+            display: none;
+            border: 0;
+            border-radius: 50%;
+        }
+        &:hover .bar__current__progress {
+            background-color: #1db954;
+        }
+        &:hover .bar__progress__knob {
+            display: block;
+        }
+    }
+}

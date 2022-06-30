@@ -1,0 +1,20 @@
+.time {
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--music-text-color);
+    user-select: none;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.action {
+    visibility: hidden;
+}
+
+.active2 {
+    visibility: unset;
+    color: #1db954 !important;
+}

@@ -1,0 +1,50 @@
+@import 'normalize.css';
+
+:root {
+    // --primary: #444;
+    --background-highlight: #1fdf64;
+    --backgrond: #000;
+    --main-background: #1b1b1b;
+    --playing-background: #181818;
+    --border-color: #282828;
+    --text-color: #b3b3b3;
+    --white-color: #fff;
+    --font-family: spotify-circular, spotify-circular-cyrillic, spotify-circular-arabic, spotify-circular-hebrew,
+        Helvetica Neue, helvetica, arial, Hiragino Kaku Gothic Pro, Meiryo, MS Gothic, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+::-webkit-scrollbar {
+    width: 16px;
+}
+::-webkit-scrollbar-track {
+    margin-bottom: 90px;
+}
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    overflow-y: overlay;
+}
+button,
+input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}

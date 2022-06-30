@@ -1,0 +1,25 @@
+.wrapper {
+    min-height: 1000px;
+}
+.wrap-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    margin-top: 24px;
+}
+.wrap-list {
+    padding: 0 32px;
+}
+.fade-in {
+    justify-content: flex-end;
+
+    button {
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+        color: var(--white-color);
+        text-transform: uppercase;
+        font-weight: 700;
+        padding: 12px;
+    }
+}

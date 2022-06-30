@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    min-width: 32px;
+    width: 32px;
+    color: rgba(255, 255, 255, 0.7);
+
+    &:hover {
+        color: #fff;
+    }
+}
+.disable {
+    pointer-events: none;
+    opacity: 0.5;
+}
+.popper {
+    --generic-tooltip-background-color: #282828;
+    background-color: var(--generic-tooltip-background-color);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    color: #fff;
+    padding: 8px;
+    font-size: 1.4rem;
+}

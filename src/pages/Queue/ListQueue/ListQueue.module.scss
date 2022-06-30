@@ -1,0 +1,81 @@
+.wrapper {
+    --music-text-color: #b3b3b3;
+    &:hover {
+        background-color: rgb(255 255 255 / 10%);
+    }
+}
+.wrap-music {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    gap: 16px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    height: 56px;
+    position: relative;
+}
+.row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stt {
+    font-size: 1.6rem;
+    color: var(--music-text-color);
+}
+.img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    overflow: hidden;
+}
+.name {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-weight: 400;
+    color: var(--white-color);
+    user-select: none;
+}
+.wrap-album-name {
+    height: 100%;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.album-name,
+.author {
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: var(--music-text-color);
+    user-select: none;
+}
+
+.wrapper:hover button {
+    visibility: unset;
+}
+
+.add {
+    button {
+        border: 1px solid #727272;
+        border-radius: 500px;
+        padding: 7px 15px;
+        transition: all ease 0.2s;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--white-color);
+        &:hover {
+            transform: scale(1.04);
+            border-color: var(--white-color);
+        }
+    }
+}
