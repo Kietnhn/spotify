@@ -1,3 +1,4 @@
+import publicPaths from '../paths';
 import Home from '../pages/Home';
 import Collection from '../pages/Collection';
 import Search from '../pages/Search';
@@ -7,42 +8,47 @@ import Queue from '../pages/Queue';
 import Favorite from '../pages/Favorite';
 import NewPlayList from '../pages/NewPlayList/NewPlayList';
 import Genra from '../pages/Genra';
+import Author from '../pages/Author';
 const publicRoutes = [
     {
-        path: '/',
+        path: publicPaths.home,
         component: Home,
     },
     {
-        path: '/search',
+        path: publicPaths.search,
         component: Search,
     },
     {
-        path: '/favorite',
+        path: publicPaths.favorite,
         component: Favorite,
     },
     {
-        path: '/collection',
+        path: publicPaths.collection,
         component: Collection,
     },
     {
-        path: '/new',
+        path: publicPaths.new,
         component: NewPlayList,
     },
     {
-        path: '/playlist',
+        path: publicPaths.playlist,
         component: Playlist,
     },
     {
-        path: '/download',
+        path: publicPaths.download,
         component: Download,
     },
     {
-        path: '/queue',
+        path: publicPaths.queue,
         component: Queue,
     },
     {
-        path: '/genra',
+        path: publicPaths.genra,
         component: Genra,
+    },
+    {
+        path: publicPaths.author,
+        component: Author,
     },
 ];
 

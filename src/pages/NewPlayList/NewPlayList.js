@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentPlaylist, toggleFadeInSearch } from '../../features/Playlist/Playlist';
+import { setSearch } from '../../features/Search/Search';
 import ListQueue from '../Queue/ListQueue/ListQueue';
 import Album from '../Playlist/Album';
 import Search from '../../components/Search';
@@ -18,8 +19,6 @@ function NewPlayList() {
 
     const newPlayList = useSelector((state) => state.playlist);
     const { currentPlaylist, playlists, indexPlaylist } = newPlayList;
-    console.log('playlists', playlists);
-    console.log('indexPlaylist', indexPlaylist);
 
     const handleToggleFadeInSearch = () => {
         const tempPlaylist = { ...currentPlaylist };
@@ -28,6 +27,7 @@ function NewPlayList() {
         newPlayList[indexPlaylist] = tempPlaylist;
         dispatch(setCurrentPlaylist(tempPlaylist));
         dispatch(toggleFadeInSearch(newPlayList));
+        dispatch(setSearch(''));
     };
     return (
         <div className={cx('wrapper')}>
@@ -37,18 +37,20 @@ function NewPlayList() {
                     <div className={cx('wrap-search')}>
                         <div className={cx('left')}>
                             <h1>Hãy cùng tìm nội dung cho danh sách phát của bạn</h1>
-                            <Search newPlaylist={true} placeholder="Tìm bài hát và tập podcast" />
+                            <Search newPlaylist={true} placeholder="Tìm bài hát và tập podcast" fromPlaylist={true} />
                         </div>
                         <div className={cx('right')}>
                             <BtnIcon icon={<ClearInputIcon />} onClick={handleToggleFadeInSearch} />
                         </div>
                     </div>
                     <div className={cx('wrap-list')}>
-                        {songSearch.length > 0 &&
-                            inputSearch !== '' &&
+                        {inputSearch !== '' && songSearch.length > 0 ? (
                             songSearch.map((song, index) => (
                                 <ListQueue key={index} music={song} index={index + 1} add={true} />
-                            ))}
+                            ))
+                        ) : (
+                            <div></div>
+                        )}
                     </div>
                 </div>
             ) : (

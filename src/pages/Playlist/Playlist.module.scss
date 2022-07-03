@@ -1,11 +1,5 @@
-.wrapper {
-    // padding-top: 64px;
-}
 .header {
     padding: 0 32px;
-    // background-color: rgba(240, 112, 96, 0.7);\
-
-    // background: linear-gradient(transparent 0, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .wrap-header {
@@ -25,9 +19,6 @@
     width: 232px;
     margin-right: 24px;
     img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
         -webkit-box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
         box-shadow: 0 4px 60px rgb(0 0 0 / 50%);
     }
@@ -53,8 +44,6 @@
     }
 }
 
-.info {
-}
 .type {
     margin-top: 4px;
     font-size: 1.2rem;
@@ -65,6 +54,7 @@
 }
 .name {
     margin: 4px 0;
+    font-weight: 700;
     font-size: 4.8rem;
     line-height: 8rem;
     color: var(--white-color);

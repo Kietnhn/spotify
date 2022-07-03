@@ -13,7 +13,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin: 0 -12px;
+    margin: 0 -12px 36px;
 }
 .col-top {
     width: 40%;
@@ -31,9 +31,6 @@
     width: 92px;
     height: 92px;
     img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
         border-radius: 4px;
     }
 }
@@ -64,6 +61,15 @@
     &:hover {
         background-color: rgb(255 255 255 / 10%);
     }
+    &:hover .song-img img {
+        filter: brightness(0.7);
+    }
+    &:hover .song-img .play-btn-sm {
+        display: flex;
+    }
+    &:hover button {
+        visibility: unset;
+    }
 }
 .wrap-song {
     display: flex;
@@ -76,23 +82,37 @@
 .left {
     display: flex;
     align-items: center;
+    margin-left: -8px;
+}
+.right {
+    margin-right: -8px;
 }
 .song-img {
     width: 40px;
     height: 40px;
-    margin-right: 16px;
-    img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+    position: relative;
+    .play-btn-sm {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--white-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        display: none;
     }
 }
 .song-info {
+    margin-left: 16px;
     h5 {
         font-size: 1.6rem;
         line-height: 2.4rem;
         font-weight: 400;
         color: var(--white-color);
+    }
+    .isplaying {
+        color: var(--active-color-text);
     }
     p {
         font-size: 1.4rem;
@@ -101,34 +121,6 @@
     }
 }
 
-.actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-.action {
-    visibility: hidden;
-}
-.wrapper:hover .action {
-    visibility: unset;
-}
-.time {
-    font-weight: 400;
-    font-size: 1.4rem;
-    color: var(--music-text-color);
-    user-select: none;
-}
-.active2 {
-    color: #1db954 !important;
-    visibility: unset;
-}
-
-.body {
-    margin-top: 48px;
-}
-
-.no-result {
-}
 .warning {
     padding: 280px 0 0;
     color: var(--white-color);

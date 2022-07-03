@@ -1,9 +1,10 @@
 import HeadlessTippy from '@tippyjs/react/headless';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from '../../components/Search';
 import Button from '../../components/Button';
 import BtnIcon from '../../components/BtnIcon';
 import { CloseMenuIcon, LinkIcon, NextPageIcon, OpenMenuIcon, PrePageIcon } from '../../components/Icons';
+import publicPaths from '../../paths';
 
 import classNames from 'classnames/bind';
 import styles from './Topbar.module.scss';
@@ -12,9 +13,28 @@ const cx = classNames.bind(styles);
 
 function Topbar() {
     const [showMenu, setShowMenu] = useState(false);
+    const [fadeInHeader, setFadeInHeader] = useState(false);
+    useEffect(() => {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                setFadeInHeader(true);
+            } else {
+                setFadeInHeader(false);
+            }
+        });
+        return () => {
+            window.removeEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    setFadeInHeader(true);
+                } else {
+                    setFadeInHeader(false);
+                }
+            });
+        };
+    }, []);
 
     const handlePrevPage = () => {
-        if (window.location.href === 'http://localhost:3006/') {
+        if (window.location.pathname === publicPaths.home) {
             return;
         }
         window.history.back();
@@ -24,9 +44,9 @@ function Topbar() {
     };
     return (
         <header className={cx('wrapper')}>
-            <div className={cx('below')}></div>
+            <div className={cx('below', { fadeInHeader })}></div>
             <div className={cx('above')}>
-                <div className={cx('diraction')}>
+                <div className={cx('diraction', { 'hide-bg': fadeInHeader })}>
                     <BtnIcon onClick={handlePrevPage} icon={<PrePageIcon />} isTrue={true} content="Quay lại"></BtnIcon>
                     <BtnIcon
                         onClick={handleNextPage}
@@ -34,7 +54,7 @@ function Topbar() {
                         isTrue={true}
                         content="Tiếp theo"
                     ></BtnIcon>
-                    {window.location.href === 'http://localhost:3006/search' && (
+                    {window.location.href.includes(publicPaths.search) && (
                         <Search placeholder="Nghệ sĩ, bài hát hoặc podcast" />
                     )}
                 </div>

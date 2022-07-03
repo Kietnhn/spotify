@@ -15,9 +15,12 @@ import {
     SearchActiveIcon,
     SearchIcon,
 } from '../../components/Icons';
-import { addNewPlayList, deletePlaylist, setCurrentPlaylist, setIndexPlaylist } from '../../features/Playlist/Playlist';
+import Delete from '../../components/Model/Delete';
+import { setSearch } from '../../features/Search/Search';
+import { addNewPlayList, setCurrentPlaylist, setIndexPlaylist, setIsDelete } from '../../features/Playlist/Playlist';
 import Titles from '../../titles/Titles';
 import { setTitle } from '../../features/Title/Title';
+import publicPaths from '../../paths';
 
 import classNames from 'classnames/bind';
 import styles from './Sidebar.module.scss';
@@ -26,7 +29,7 @@ const cx = classNames.bind(styles);
 function Sidebar() {
     const dispatch = useDispatch();
     const newPlaylist = useSelector((state) => state.playlist);
-    const { playlists } = newPlaylist;
+    const { playlists, isDelete } = newPlaylist;
     const handleAddNewPlaylist = () => {
         const newPlaylist = {
             name: `Danh sách phát của tôi #${playlists.length + 1}`,
@@ -41,19 +44,22 @@ function Sidebar() {
         dispatch(setTitle(Titles.new));
     };
 
-    const handleDeletePlaylist = (index) => {
-        dispatch(deletePlaylist(index));
-    };
     const handleSelectCurrentPlaylist = (item, index) => {
         dispatch(setCurrentPlaylist(item));
         dispatch(setIndexPlaylist(index));
+        dispatch(setTitle(Titles.new));
+        dispatch(setSearch(''));
     };
     return (
         <aside className={cx('wrapper')}>
             <div className={cx('content')}>
                 <div>
                     <div className={cx('logo')}>
-                        <Link to="/" className={cx('logo-link')} onClick={() => dispatch(setTitle(Titles.home))}>
+                        <Link
+                            to={publicPaths.home}
+                            className={cx('logo-link')}
+                            onClick={() => dispatch(setTitle(Titles.home))}
+                        >
                             <LogoIcon className={cx('icon')} />
                         </Link>
                     </div>
@@ -61,21 +67,21 @@ function Sidebar() {
                         <Menu>
                             <MenuItem
                                 title="Trang chủ"
-                                to="/"
+                                to={publicPaths.home}
                                 icon={<HomeIcon />}
                                 activeIcon={<HomeActiveIcon />}
                                 onClick={() => dispatch(setTitle(Titles.home))}
                             />
                             <MenuItem
                                 title="Tìm kiếm"
-                                to="/search"
+                                to={publicPaths.search}
                                 icon={<SearchIcon />}
                                 activeIcon={<SearchActiveIcon />}
                                 onClick={() => dispatch(setTitle(Titles.search))}
                             />
                             <MenuItem
                                 title="Thư viện"
-                                to="/collection"
+                                to={publicPaths.collection}
                                 icon={<CollectionIcon />}
                                 activeIcon={<CollectionActiveIcon />}
                                 onClick={() => dispatch(setTitle(Titles.collection))}
@@ -86,7 +92,7 @@ function Sidebar() {
                         <Menu>
                             <MenuItem
                                 title="Tạo playlist"
-                                to="/new"
+                                to={publicPaths.new}
                                 icon={
                                     <div className={cx('plus-icon')}>
                                         <PlusIcon />
@@ -101,7 +107,7 @@ function Sidebar() {
                             />
                             <MenuItem
                                 title="Bài hát đã thích"
-                                to="/favorite"
+                                to={publicPaths.favorite}
                                 icon={
                                     <span className={cx('heart-icon')}>
                                         <HeartIcon />
@@ -118,18 +124,16 @@ function Sidebar() {
                     </div>
                     <div className={cx('nofication')}>
                         {playlists.map((item, index) => (
-                            <Link
-                                to="/new"
-                                key={index}
-                                className={cx('item-nof')}
-                                onClick={() => dispatch(setTitle(Titles.new))}
-                            >
+                            <Link to={publicPaths.new} key={index} className={cx('item-nof')}>
                                 <Tippy
                                     interactive
                                     delay={[700, 0]}
                                     placement="right"
                                     content={
-                                        <span className={cx('item-popper')} onClick={() => handleDeletePlaylist(index)}>
+                                        <span
+                                            className={cx('item-popper')}
+                                            onClick={() => dispatch(setIsDelete(index))}
+                                        >
                                             Xóa
                                         </span>
                                     }
@@ -144,11 +148,12 @@ function Sidebar() {
                 <Menu>
                     <MenuItem
                         title="Cài đặt Ứng dụng"
-                        to="/download"
+                        to={publicPaths.download}
                         icon={<DownloadIcon />}
                         onClick={() => dispatch(setTitle(Titles.download))}
                     />
                 </Menu>
+                {isDelete && <Delete title={playlists[isDelete].name} index={isDelete} />}
             </div>
         </aside>
     );

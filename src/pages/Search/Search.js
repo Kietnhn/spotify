@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import songs from '../../components/Music/Music';
 import { setCurrentAlbum } from '../../features/Music/Music';
 import Seaching from './Searching';
+import publicPaths from '../../paths';
 
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
@@ -67,7 +68,7 @@ function Search() {
                                     return (
                                         <div className={cx('col')} key={index}>
                                             <Link
-                                                to="/playlist"
+                                                to={publicPaths.playlist}
                                                 onClick={() => handleSeletedKind(item, random)}
                                                 className={cx('item')}
                                                 style={{ backgroundColor: `${backgroundColors[random]}` }}

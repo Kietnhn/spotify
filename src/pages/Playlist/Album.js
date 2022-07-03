@@ -1,58 +1,23 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import BtnIcon from '../../components/BtnIcon';
-import { ClockIcon, MenuBarIcon, PauseIcon, PlayIcon, TymIcon } from '../../components/Icons';
+import { ClockIcon, MenuBarIcon, TymIcon } from '../../components/Icons';
 import ListQueue from '../Queue/ListQueue/ListQueue';
 import NoAlbum from '../../components/NoAlbum';
 import Image from '../../components/Image';
-import { changeIndexSong, setCurrentMusic, setCurrentAlbum, setTogglePlay } from '../../features/Music/Music';
+import { setCurrentMusic } from '../../features/Music/Music';
+import ButtonPlay from '../../components/ButtonPlay';
 
 import classNames from 'classnames/bind';
 import styles from './Playlist.module.scss';
-
 const cx = classNames.bind(styles);
 
 function Album({ album, favorite = false, add = false }) {
     const dispatch = useDispatch();
-    const musicFeatures = useSelector((state) => state.music);
-    const { currentMusic, togglePlay } = musicFeatures;
 
-    const [firstClickPlay, setFirstClickPlay] = useState(false);
     const [mount, setMount] = useState(false);
 
-    useEffect(() => {
-        if (firstClickPlay) {
-            dispatch(setCurrentAlbum(album));
-            dispatch(setCurrentMusic(album.album[0]));
-            dispatch(changeIndexSong(0));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [firstClickPlay]);
-
-    useEffect(() => {
-        if (mount) {
-            const audio = document.querySelector('#audio');
-            audio.play();
-            dispatch(setTogglePlay(true));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentMusic]);
-
-    const handleTogglePlayMusic = () => {
-        if (!firstClickPlay) {
-            setFirstClickPlay(true);
-        } else {
-            const audio = document.querySelector('#audio');
-            if (togglePlay) {
-                audio.pause();
-            } else {
-                audio.play();
-            }
-        }
-        dispatch(setTogglePlay(!togglePlay));
-        setMount(true);
-    };
     const handleSelectSong = (song) => {
         dispatch(setCurrentMusic(song));
         setMount(true);
@@ -82,17 +47,7 @@ function Album({ album, favorite = false, add = false }) {
             {album?.album?.length > 0 ? (
                 <>
                     <div className={cx('btns')}>
-                        <div className={cx('play-btn')}>
-                            <BtnIcon
-                                icon={<PlayIcon width="24" height="24" />}
-                                isTrue={togglePlay}
-                                subContent="Phát"
-                                content="Tạm dừng"
-                                onClick={handleTogglePlayMusic}
-                                changeIcon={<PauseIcon width="24" height="24" />}
-                                toggle={togglePlay}
-                            />
-                        </div>
+                        <ButtonPlay album={album} mount={mount} setMount={setMount} />
                         {!favorite && (
                             <>
                                 <BtnIcon

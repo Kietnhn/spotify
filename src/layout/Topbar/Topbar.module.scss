@@ -16,8 +16,12 @@
     right: 0;
     bottom: 0;
     background-color: rgb(18, 18, 18);
-    opacity: 0.8125;
     z-index: -10;
+    opacity: 0;
+    transition: all linear 0.3s;
+}
+.fadeInHeader {
+    opacity: 1;
 }
 .above {
     height: 100%;
@@ -45,6 +49,11 @@
     }
     button + button {
         margin-left: 16px;
+    }
+}
+.hide-bg {
+    button {
+        background-color: transparent;
     }
 }
 //actions

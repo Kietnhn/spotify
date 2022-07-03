@@ -11,9 +11,23 @@ const playlist = createSlice({
             album: [],
             isFadeInSearch: true,
         },
+        author: {},
         indexPlaylist: 0,
+        isDelete: undefined,
     },
     reducers: {
+        setAuthor(state, action) {
+            return {
+                ...state,
+                author: action.payload,
+            };
+        },
+        setIsDelete(state, action) {
+            return {
+                ...state,
+                isDelete: action.payload,
+            };
+        },
         addNewPlayList(state, action) {
             const newState = {
                 ...state,
@@ -45,9 +59,6 @@ const playlist = createSlice({
             };
         },
         addMusicToPlaylist(state, action) {
-            // const { index, album } = action.payload;
-            // const newPlayList = [...state.playlists];
-            // newPlayList[index].album = album;
             const newState = {
                 ...state,
                 playlists: action.payload,
@@ -78,5 +89,7 @@ export const {
     deletePlaylist,
     setCurrentPlaylist,
     setIndexPlaylist,
+    setIsDelete,
+    setAuthor,
 } = actions;
 export default reducer;

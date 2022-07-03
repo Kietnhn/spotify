@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { changeIndexSong, setCurrentMusic, setIsQueue, setTogglePlay } from '../../features/Music/Music';
 import { addFavoriteList, removeFavoriteList } from '../../features/FavoriteList/favoriteList';
-
-import classNames from 'classnames/bind';
-import styles from './PlayingBar.module.scss';
+import Bar from './Bar';
+import useAudioPlayer from './Bar/useAudioPlayer';
 
 import BtnIcon from '../../components/BtnIcon';
 import Image from '../../components/Image';
@@ -24,9 +23,14 @@ import {
     VolumnIcon,
     SoundOffIcon,
     TymActiveIcon,
+    VolumnNormalIcon,
+    VolumnSmallIcon,
 } from '../../components/Icons';
-import Bar from './Bar';
-import useAudioPlayer from './Bar/useAudioPlayer';
+import publicPaths from '../../paths';
+
+import classNames from 'classnames/bind';
+import styles from './PlayingBar.module.scss';
+
 const cx = classNames.bind(styles);
 
 function PlayingBar() {
@@ -119,25 +123,36 @@ function PlayingBar() {
             dispatch(addFavoriteList(list));
         }
     };
+    const handleIconVolume = () => {
+        let icon = <VolumnIcon />;
+        const value = volume / 100;
+        if (value <= 0.7 && value >= 0.4) {
+            return <VolumnNormalIcon />;
+        } else if (value < 0.4 && value !== 0) {
+            return <VolumnSmallIcon />;
+        } else if (value === 0) {
+            return <SoundOffIcon />;
+        }
+        return icon;
+    };
     return (
         <footer className={cx('footer')}>
             <div className={cx('wrapper')}>
                 <div className={cx('playlist')}>
                     <Image
                         className={cx('music-img')}
-                        subSrc={currentMusic.avatar}
+                        subSrc={currentMusic.aboutArtist.avatar}
                         src={currentMusic.iamgeMusic}
                         alt={currentMusic.name}
                     />
                     <div className={cx('music-info')}>
                         <div className={cx('translate-font')}>
-                            <Link className={cx('name')} to="/playlist">
+                            <Link className={cx('name')} to={publicPaths.playlist}>
                                 {currentMusic.name}
                             </Link>
                         </div>
-                        <Link className={cx('author')} to="/author">
-                            {currentMusic.author}
-                            {currentMusic.subAuthor && <span>{currentMusic.subAuthor}</span>}
+                        <Link className={cx('author')} to={publicPaths.author}>
+                            {currentMusic.aboutArtist.name}
                         </Link>
                     </div>
                     <div className={cx('music-feather')}>
@@ -215,11 +230,11 @@ function PlayingBar() {
                     </div>
                 </div>
                 <div className={cx('actions')}>
-                    <Link to={toggleQueue ? '/' : '/queue'}>
+                    <Link to={toggleQueue ? publicPaths.home : publicPaths.queue}>
                         <BtnIcon
                             onClick={() => dispatch(setIsQueue(!toggleQueue))}
                             className={cx('', {
-                                active: window.location.href === 'http://localhost:3006/queue',
+                                active: window.location.href.includes(publicPaths.queue),
                             })}
                             icon={<PlaylistIcon />}
                         />
@@ -230,7 +245,7 @@ function PlayingBar() {
                             isTrue={volume / 100 !== 0}
                             content="Tắt tiếng"
                             subContent={'Hủy tắt tiếng'}
-                            icon={volume / 100 !== 0 ? <VolumnIcon /> : <SoundOffIcon />}
+                            icon={handleIconVolume()}
                             onClick={handleToggleMute}
                         />
                         <div className={cx('volume-slider')}>

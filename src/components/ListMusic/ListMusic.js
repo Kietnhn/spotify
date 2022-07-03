@@ -1,36 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { changeIndexSong, setCurrentAlbum, setCurrentMusic, setAlbumChoosedFadeAll } from '../../features/Music/Music';
-import Image from '../Image';
-import { PlayIcon } from '../Icons';
+import { setAlbumChoosedFadeAll } from '../../features/Music/Music';
 import { setTitle } from '../../features/Title/Title';
+import publicPaths from '../../paths';
+
 import classNames from 'classnames/bind';
 import styles from './ListMusic.module.scss';
+import ItemMusic from '../ItemMusic';
 
 const cx = classNames.bind(styles);
 
-function ListMusic({ listMusic = [], title, subTitle, fadeAll = false }) {
+function ListMusic({ listMusic = [], title, subTitle, fadeAll = false, avatar = false }) {
     const dispatch = useDispatch();
-    const handleSelectAlbum = (item) => {
-        if (item.album) {
-            // console.log(item);
-            dispatch(setCurrentAlbum(item));
-            dispatch(changeIndexSong(0));
-            dispatch(setCurrentMusic(item.album[0]));
-        } else {
-            const newAlbum = {
-                name: item.name,
-                description: item.description,
-                iamgeMusic: item.iamgeMusic,
-                album: [item],
-            };
-            // console.log(newAlbum);
-            dispatch(setCurrentAlbum(newAlbum));
-            dispatch(changeIndexSong(0));
-            dispatch(setCurrentMusic(item));
-        }
-        dispatch(setTitle(item.name));
-    };
+
     const handleChooseAlbumFadeAll = (listMusic, title, subTitle) => {
         dispatch(
             setAlbumChoosedFadeAll({
@@ -47,7 +29,7 @@ function ListMusic({ listMusic = [], title, subTitle, fadeAll = false }) {
                 <div className={cx('wrap-title')}>
                     <Link
                         className={cx('title')}
-                        to={`/genra`}
+                        to={publicPaths.genra}
                         onClick={() => handleChooseAlbumFadeAll(listMusic, title, subTitle)}
                     >
                         {title}
@@ -57,7 +39,7 @@ function ListMusic({ listMusic = [], title, subTitle, fadeAll = false }) {
                 {!fadeAll && listMusic.length > 5 && (
                     <div>
                         <Link
-                            to="/genra"
+                            to={publicPaths.genra}
                             className={cx('show-all-btn')}
                             onClick={() => handleChooseAlbumFadeAll(listMusic, title, subTitle)}
                         >
@@ -75,26 +57,7 @@ function ListMusic({ listMusic = [], title, subTitle, fadeAll = false }) {
                                 return;
                             }
                         }
-                        return (
-                            <div key={index} className={cx('col')}>
-                                <Link to="/playlist" className={cx('item')} onClick={() => handleSelectAlbum(item)}>
-                                    <div className={cx('image')}>
-                                        <Image src={item.iamgeMusic} subSrc={item.avatar} alt={item.name} />
-                                        <div className={cx('play-wrap')}>
-                                            <button className={cx('play-btn')}>
-                                                <span className={cx('play-icon')}>
-                                                    <PlayIcon />
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className={cx('info')}>
-                                        <h3 className={cx('name')}>{item.name}</h3>
-                                        <p className={cx('des')}>{item.description}</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        );
+                        return <ItemMusic key={index} item={item} className={cx('col')} avatar={avatar} />;
                     })}
                 </div>
             </div>

@@ -11,40 +11,60 @@ import styles from './Search.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Search({ newPlaylist, placeholder }) {
+function Search({ newPlaylist, placeholder, fromPlaylist = false }) {
     const dispatch = useDispatch();
     const search = useSelector((state) => state.search);
     const { inputSearch } = search;
 
     const inputRef = useRef();
-    // useEffect(() => {
-    //     console.log('kindSearch', kindSearch);
-    // }, [kindSearch]);
+
+    //songFIlter
     useEffect(() => {
         const newInputValue = toLowerCaseNonAccentVietnamese(inputSearch);
+        if (newInputValue) {
+            const songFilter = songs.album.filter((song) => {
+                return toLowerCaseNonAccentVietnamese(song.name).includes(newInputValue);
+            });
+            dispatch(setSongSearch(songFilter.sort()));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inputSearch]);
+    //authorfilter
+    useEffect(() => {
+        const newInputValue = toLowerCaseNonAccentVietnamese(inputSearch);
+        if (newInputValue) {
+            const authorFilter = songs.album.filter((song) => {
+                return toLowerCaseNonAccentVietnamese(song.aboutArtist.name).includes(newInputValue);
+            });
 
-        const songFilter = songs.album.filter((song) => {
-            return toLowerCaseNonAccentVietnamese(song.name).includes(newInputValue);
-        });
-        const authorFilter = songs.album.filter((song) => {
-            return toLowerCaseNonAccentVietnamese(song.author).includes(newInputValue);
-        });
-        const kindList = [];
-        // eslint-disable-next-line no-unused-vars
-        const kindFilter = songs.album.forEach((song) => {
-            // eslint-disable-next-line no-unused-vars
-            const result = song.kinds.filter(
-                (kind) => toLowerCaseNonAccentVietnamese(kind).includes(newInputValue) && kindList.push(song),
-            );
-            // console.log('result', result);
-            // return
-        });
-        // console.log('result2', kindList);
-        const newKindList = new Set(kindList);
-        // console.log('result3', kindList);
-        dispatch(setSongSearch(songFilter.sort()));
-        dispatch(setAuthorSearch(authorFilter.sort()));
-        dispatch(setKindSearch(Array.from(newKindList).sort()));
+            const newAuthors = authorFilter.map((author) => author.aboutArtist.name);
+            const setNewAuthors = new Set(newAuthors);
+            const authorsArray = Array.from(setNewAuthors);
+            const newAuthorFilter = [];
+            for (let i = 0; i < authorsArray.length; i++) {
+                const otherAuthorLists = songs.album.find((song) => song.aboutArtist.name.includes(authorsArray[i]));
+                if (otherAuthorLists) {
+                    newAuthorFilter.push(otherAuthorLists);
+                }
+            }
+            dispatch(setAuthorSearch(newAuthorFilter.sort()));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [inputSearch]);
+    //kindFilter
+    useEffect(() => {
+        const newInputValue = toLowerCaseNonAccentVietnamese(inputSearch);
+        if (newInputValue) {
+            const kindList = [];
+            songs.album.forEach((song) => {
+                // eslint-disable-next-line no-unused-vars
+                const result = song.kinds.filter(
+                    (kind) => toLowerCaseNonAccentVietnamese(kind).includes(newInputValue) && kindList.push(song),
+                );
+            });
+            const newKindList = new Set(kindList);
+            dispatch(setKindSearch(Array.from(newKindList).sort()));
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inputSearch]);
 
@@ -67,7 +87,12 @@ function Search({ newPlaylist, placeholder }) {
             </div>
             {inputSearch.length > 0 && (
                 <div className={cx('clear-btn')} onClick={handleClearInputSearch}>
-                    <BtnIcon className={cx('clear-icon')} icon={<ClearInputIcon />} />
+                    <BtnIcon
+                        className={cx('clear-icon', {
+                            fromPlaylist,
+                        })}
+                        icon={<ClearInputIcon />}
+                    />
                 </div>
             )}
         </div>

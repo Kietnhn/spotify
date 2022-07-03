@@ -61,8 +61,8 @@
 .nofication {
     display: flex;
     flex-direction: column-reverse;
-    padding: 16px 0;
-    margin: 8px 0;
+    padding: 14px 0;
+    margin: 8px 24px;
     border-top: 1px solid var(--border-color);
     max-height: 185px;
     overflow: auto;
@@ -72,12 +72,12 @@
 }
 .item-nof {
     position: relative;
-    padding: 0 24px;
-    margin-bottom: 18px;
+    margin: 6px 0;
     display: flex;
     align-items: center;
+    cursor: default;
     &:hover p {
-        cursor: default;
+        cursor: pointer;
         color: var(--white-color);
     }
 }

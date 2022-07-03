@@ -1,5 +1,6 @@
+import ItemMusic from '../../../../components/ItemMusic';
+
 import classNames from 'classnames/bind';
-import Image from '../../../../components/Image';
 import styles from './ShowSearch.module.scss';
 
 const cx = classNames.bind(styles);
@@ -14,25 +15,7 @@ function ShowSearch({ title, list = [], avatar = false }) {
                 {list.map((item, index) => {
                     // eslint-disable-next-line array-callback-return
                     if (index > 4) return;
-                    return (
-                        <div className={cx('col')} key={index}>
-                            <div className={cx('item')}>
-                                <div className={cx('img')}>
-                                    <Image
-                                        src={avatar ? item.avatar : item.iamgeMusic}
-                                        alt={item.author}
-                                        className={cx('', {
-                                            avatar,
-                                        })}
-                                    />
-                                </div>
-                                <div className={cx('info')}>
-                                    <h2>{avatar ? item.author : item.name}</h2>
-                                    <p>{avatar ? title : item.kinds[0]}</p>
-                                </div>
-                            </div>
-                        </div>
-                    );
+                    return <ItemMusic item={item} search={true} avatar={avatar} className={cx('col')} key={index} />;
                 })}
             </div>
         </div>

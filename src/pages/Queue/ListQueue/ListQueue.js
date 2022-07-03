@@ -14,12 +14,9 @@ function ListQueue({ music, index, add = false, onDoubleClick }) {
     const { indexPlaylist, currentPlaylist, playlists } = newPlayList;
     const handleAddMusicToNewPlaylist = (song) => {
         const tempPlaylist = { ...currentPlaylist };
-        // console.log('before', tempPlaylist.album);
         tempPlaylist.album = [...currentPlaylist.album, song];
-        // console.log('after', tempPlaylist.album);
         const newPlayList = [...playlists];
         newPlayList[indexPlaylist] = tempPlaylist;
-        // console.log('new', newPlayList);
         dispatch(setCurrentPlaylist(tempPlaylist));
         dispatch(addMusicToPlaylist(newPlayList));
     };
@@ -29,10 +26,15 @@ function ListQueue({ music, index, add = false, onDoubleClick }) {
                 <div className={cx('row')}>
                     {!add && <span className={cx('stt')}>{index}</span>}
                     <div className={cx('row')}>
-                        <Image className={cx('img')} subSrc={music.avatar} src={music.iamgeMusic} alt={music.name} />
+                        <Image
+                            className={cx('img')}
+                            subSrc={music.aboutArtist.avatar}
+                            src={music.iamgeMusic}
+                            alt={music.name}
+                        />
                         <div className={cx('info')}>
                             <h3 className={cx('name')}>{music.name}</h3>
-                            <p className={cx('author')}>{music.author}</p>
+                            <p className={cx('author')}>{music.aboutArtist.name}</p>
                         </div>
                     </div>
                 </div>

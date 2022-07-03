@@ -233,6 +233,23 @@ export const ChangePcIcon = ({ width = '1.6rem', height = '1.6rem', className })
         <path fill="currentColor" d="M13 10a2 2 0 11-4 0 2 2 0 014 0zm-1-5a1 1 0 11-2 0 1 1 0 012 0z"></path>
     </svg>
 );
+export const VolumnNormalIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg role="presentation" height={height} width={width} viewBox="0 0 16 16" className={className}>
+        <path
+            fill="currentColor"
+            d="M9.741.85a.75.75 0 01.375.65v13a.75.75 0 01-1.125.65l-6.925-4a3.642 3.642 0 01-1.33-4.967 3.639 3.639 0 011.33-1.332l6.925-4a.75.75 0 01.75 0zm-6.924 5.3a2.139 2.139 0 000 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 6.087a4.502 4.502 0 000-8.474v1.65a2.999 2.999 0 010 5.175v1.649z"
+        ></path>
+    </svg>
+);
+export const VolumnSmallIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
+    <svg role="presentation" height={height} width={width} viewBox="0 0 16 16" className={className}>
+        <path
+            fill="currentColor"
+            d="M9.741.85a.75.75 0 01.375.65v13a.75.75 0 01-1.125.65l-6.925-4a3.642 3.642 0 01-1.33-4.967 3.639 3.639 0 011.33-1.332l6.925-4a.75.75 0 01.75 0zm-6.924 5.3a2.139 2.139 0 000 3.7l5.8 3.35V2.8l-5.8 3.35zm8.683 4.29V5.56a2.75 2.75 0 010 4.88z"
+        ></path>
+    </svg>
+);
+
 export const VolumnIcon = ({ width = '1.6rem', height = '1.6rem', className }) => (
     <svg role="presentation" height={height} width={width} viewBox="0 0 16 16" className={className}>
         <path
@@ -291,6 +308,15 @@ export const FavoriteIcon = ({ width = '4.8rem', height = '4.8rem', className })
         <path
             fill="currentColor"
             d="M15 4v12.167a3.5 3.5 0 11-3.5-3.5H13V4h2zm-2 10.667h-1.5a1.5 1.5 0 101.5 1.5v-1.5z"
+        ></path>
+    </svg>
+);
+//verification
+export const CheckIcon = ({ width = '2.4rem', height = '2.4rem', className }) => (
+    <svg role="img" height={height} width={width} className={className} viewBox="0 0 24 24">
+        <path
+            fill="currentColor"
+            d="M10.814.5a1.658 1.658 0 012.372 0l2.512 2.572 3.595-.043a1.658 1.658 0 011.678 1.678l-.043 3.595 2.572 2.512c.667.65.667 1.722 0 2.372l-2.572 2.512.043 3.595a1.658 1.658 0 01-1.678 1.678l-3.595-.043-2.512 2.572a1.658 1.658 0 01-2.372 0l-2.512-2.572-3.595.043a1.658 1.658 0 01-1.678-1.678l.043-3.595L.5 13.186a1.658 1.658 0 010-2.372l2.572-2.512-.043-3.595a1.658 1.658 0 011.678-1.678l3.595.043L10.814.5zm6.584 9.12a1 1 0 00-1.414-1.413l-6.011 6.01-1.894-1.893a1 1 0 00-1.414 1.414l3.308 3.308 7.425-7.425z"
         ></path>
     </svg>
 );

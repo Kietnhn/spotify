@@ -1,0 +1,132 @@
+.wrapper {
+    margin-top: -64px;
+}
+.heading {
+    padding: 0 32px 24px;
+    background-color: #131131;
+}
+.content-heading {
+    height: 316px;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: flex-end;
+    color: var(--white-color);
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    span {
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+    }
+    .check-icon {
+        position: relative;
+        color: #3d91f4;
+        z-index: 3;
+        margin-right: 4px;
+    }
+    .check-icon svg {
+        z-index: 3;
+    }
+}
+.check-icon::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    z-index: 2;
+}
+.author {
+    font-size: 9.6rem;
+    line-height: 15rem;
+    padding: 8px 0;
+}
+.page {
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+    margin-top: 4px;
+}
+.container {
+    padding: 0 32px;
+}
+.btns {
+    padding: 24px 0px;
+}
+.popular {
+    margin-bottom: 40px;
+}
+.title {
+    color: var(--white-color);
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    margin-bottom: 20px;
+}
+.show-all-btn {
+    padding: 16px;
+    button {
+        color: rgb(255 255 255 / 70%);
+        font-size: 1.2rem;
+        line-height: 1.6rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+}
+
+//introduce
+.introduce {
+    margin-bottom: 60px;
+}
+.image {
+    max-width: 810px;
+    position: relative;
+    transform: scale(1);
+    transition: all ease 0.25s;
+    &:hover {
+        transform: scale(1.01);
+    }
+}
+.image-introduce {
+    border-radius: 8px;
+    width: 100%;
+    height: 516px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.info-introduce {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    max-width: 672px;
+    padding: 40px;
+    p {
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: var(--white-color);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.no-image-introduce {
+    max-width: 672px;
+    padding: 40px;
+    background-color: #282828;
+    border-radius: 8px;
+}
+.image-no-introduce {
+    margin-bottom: 24px;
+    width: 204px;
+    height: 204px;
+    img {
+        border-radius: 50%;
+    }
+}

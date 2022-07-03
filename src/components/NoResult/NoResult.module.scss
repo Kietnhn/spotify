@@ -1,0 +1,42 @@
+//no-album
+.no-album {
+    margin: 48px 0 68px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    color: var(--white-color);
+}
+
+.no-album-icon {
+    color: var(--white-color);
+}
+
+.no-album-title {
+    font-size: 3.2rem;
+    line-height: 3.6rem;
+    margin: 20px 0 8px;
+}
+
+.no-album-des {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin-bottom: 32px;
+}
+
+.no-album-btn {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    background-color: var(--white-color);
+    color: #000;
+    font-weight: 700;
+    padding: 12px 32px;
+    border-radius: 500px;
+    display: block;
+    transition: all ease 33ms;
+    cursor: pointer;
+    &:hover {
+        background-color: #f6f6f6;
+        transform: scale(1.04);
+    }
+}
