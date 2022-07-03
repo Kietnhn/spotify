@@ -1,13 +1,13 @@
 const publicPaths = {
-    home: '/spotify/',
-    search: '/spotify/search',
-    favorite: '/spotify/favorite',
-    collection: '/spotify/collection',
-    new: '/spotify/new',
-    playlist: '/spotify/playlist',
-    download: '/spotify/download',
-    queue: '/spotify/queue',
-    genra: '/spotify/genra',
-    author: '/spotify/author',
+    home: '/',
+    search: '/search',
+    favorite: '/favorite',
+    collection: '/collection',
+    new: '/new',
+    playlist: '/playlist',
+    download: '/download',
+    queue: '/queue',
+    genra: '/genra',
+    author: '/author',
 };
 export default publicPaths;
